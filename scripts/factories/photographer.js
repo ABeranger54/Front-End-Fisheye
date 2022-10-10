@@ -1,17 +1,50 @@
 function photographerFactory(data) {
-    const { name, portrait } = data;
+    return new Photographer(data);
+}
+class Photographer{
+    constructor(data){
+        this._id = data.id;
+        this._name = data.name;
+        this._picture = `assets/photographers/${data.portrait}`;
+        this._city = data.city;
+        this._tagline = data.tagline;
+        this._price = data.price;
+    }
 
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
+    getUserCardDOM(){
         const article = document.createElement( 'article' );
+
+        const link = document.createElement('a');
+        link.setAttribute("href", "photographer.html?id=" + this._id);
+        link.setAttribute("aria-label", this._name);
+
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", this._picture);
+        img.setAttribute("alt", "");
+
         const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
+        h2.textContent = this._name;
+
+        link.appendChild(img);
+        link.appendChild(h2);
+        article.appendChild(link);
+
+        const city = document.createElement('p');
+        city.setAttribute("class", "photographer_section_city");
+        city.textContent = this._city;
+
+        const tagline = document.createElement('p');
+        tagline.setAttribute("class", "photographer_section_tagline");
+        tagline.textContent = this._tagline;
+
+        const price = document.createElement('p');
+        price.setAttribute("class", "photographer_section_price");
+        price.textContent = this._price + "€/jour";
+
+        article.appendChild(city);
+        article.appendChild(tagline);
+        article.appendChild(price);
+
         return (article);
     }
-    return { name, picture, getUserCardDOM }
 }
