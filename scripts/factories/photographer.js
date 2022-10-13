@@ -18,9 +18,7 @@ class Photographer{
         link.setAttribute("href", "photographer.html?id=" + this._id);
         link.setAttribute("aria-label", this._name);
 
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", this._picture);
-        img.setAttribute("alt", "");
+        const img = this.getPictureDOM();
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = this._name;
@@ -46,5 +44,34 @@ class Photographer{
         article.appendChild(price);
 
         return (article);
+    }
+
+    getDescriptionDOM(){
+        const container = document.createElement("div");
+        container.setAttribute("id", "photographer_page_description");
+
+        const h2 = document.createElement( 'h2' );
+        h2.textContent = this._name;
+
+        const city = document.createElement('p');
+        city.setAttribute("id", "photographer_page_description_city");
+        city.textContent = this._city;
+
+        const tagline = document.createElement('p');
+        tagline.setAttribute("id", "photographer_page_description_tagline");
+        tagline.textContent = this._tagline;
+
+        container.appendChild(h2);
+        container.appendChild(city);
+        container.appendChild(tagline);
+
+        return container;
+    }
+
+    getPictureDOM(){
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", this._picture);
+        img.setAttribute("alt", "");
+        return img;
     }
 }

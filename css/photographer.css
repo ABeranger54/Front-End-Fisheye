@@ -3,9 +3,20 @@
 }
 
 .photograph-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
     background-color: #FAFAFA;
-    height: 300px;
+    height: 200px;
     margin: 0 100px;
+}
+
+.photograph-header img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .contact_button {
@@ -19,6 +30,7 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0 50px;
 }
 
 .modal {
@@ -73,4 +85,24 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#photographer_page_description h2{
+    color: #D3573C;
+    margin: 0;
+    font-size: 44px;
+}
+
+#photographer_page_description p{
+    margin-top: 20px;
+}
+
+#photographer_page_description_city{
+    color: #901C1C;
+    font-size: 30px;
+}
+
+#photographer_page_description_tagline{
+    color: #525252;
+    font-size: 24px;
 }
