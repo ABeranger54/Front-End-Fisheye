@@ -1,5 +1,15 @@
+h2, p{
+    margin: 0;
+}
+
 #contact_modal {
     display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1080px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .photograph-header {
@@ -30,7 +40,6 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    margin: 0 50px;
 }
 
 .modal {
@@ -42,7 +51,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin:  50px auto;
 }
 
 .modal header {
@@ -80,11 +89,21 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input, form textarea{
     width: 100%;
-    height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 25px;
+    padding: 10px;
+}
+
+form input {
+    height: 48px;
+}
+
+form textarea{
+    resize: none;
+    height: 200px;
 }
 
 #photographer_page_description h2{
@@ -105,4 +124,57 @@ form input {
 #photographer_page_description_tagline{
     color: #525252;
     font-size: 24px;
+}
+
+aside{
+    background-color: #d3573c;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    right: 50px;
+    bottom: 0;
+    padding: 15px;
+    width: 270px;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+}
+
+aside p{
+    font-size: 20px;
+}
+
+#media_section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 80px;
+}
+
+#media_section article{
+    margin: 40px 10px;
+    width: 300px;
+}
+
+#media_section article img{
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.media_description{
+    display: flex;
+    justify-content: space-between;
+}
+
+.media_description h2{
+    color: #901C1C;
+}
+
+.media_description p{
+    font-size: 20px;
+    line-height: 35px;
+    color: #901C1C;
+    font-weight: bold;
 }
