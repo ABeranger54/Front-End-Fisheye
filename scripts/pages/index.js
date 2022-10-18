@@ -9,7 +9,7 @@
     }
 
     async function init() {
-        const { photographers } = await getPhotographers();
+        const { photographers } = await getJSON();
         displayData(photographers);
     }
     

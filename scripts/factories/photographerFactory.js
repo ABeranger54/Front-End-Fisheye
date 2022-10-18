@@ -2,11 +2,14 @@ function photographerFactory(data) {
     return new Photographer(data);
 }
 
-async function getPhotographers() {
+async function getJSON() {
     return (await fetch('data/photographers.json')).json();
 }
 
 class Photographer{
+
+    static PHOTOGRAPHERS = null;
+
     constructor(data){
         this._id = data.id;
         this._name = data.name;
@@ -14,6 +17,28 @@ class Photographer{
         this._city = data.city;
         this._tagline = data.tagline;
         this._price = data.price;
+    }
+
+    static async loadPhotographers(){
+        const { photographers } = await getJSON();
+        this.PHOTOGRAPHERS = photographers;
+    }
+
+    //TODO: return objects
+    static async getPhotographers(){
+        if(!this.PHOTOGRAPHERS){
+            await Photographer.loadPhotographers();
+        }
+        return this.PHOTOGRAPHERS;
+    }
+
+    static async getPhotographerById(id){
+        await Photographer.getPhotographers();
+        const result = this.PHOTOGRAPHERS.filter(el => {
+            return el['id'] == id;
+        });
+
+        return photographerFactory(result[0]);
     }
 
     getUserCardDOM(){

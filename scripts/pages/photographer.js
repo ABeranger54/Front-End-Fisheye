@@ -1,9 +1,8 @@
 async function displayData(photographer, medias) {
-    const photographerModel = photographerFactory(photographer);
-    const userCardDOM = photographerModel.getDescriptionDOM();
+    const userCardDOM = photographer.getDescriptionDOM();
     var header = document.querySelector(".photograph-header");
     header.insertBefore(userCardDOM, header.firstChild);
-    const picture = photographerModel.getPictureDOM();
+    const picture = photographer.getPictureDOM();
     header.appendChild(picture);
 
     var totalLikes = 0;
@@ -21,25 +20,22 @@ async function displayData(photographer, medias) {
     aside.appendChild(asideLikes);
 
     const asidePrice = document.createElement("p");
-    asidePrice.textContent = photographerModel._price + "€ / jour";
+    asidePrice.textContent = photographer._price + "€ / jour";
     aside.appendChild(asidePrice);
 }
 
 async function init() {
-    const { photographers } = await getPhotographers();
     var params = (new URL(document.location)).searchParams;
     var id = params.get('id');
 
-    const photographerResult = photographers.filter(el => {
-        return el['id'] == id;
-    });
+    const photographer = await Photographer.getPhotographerById(id);
 
-    const { media } = await getPhotographers();
+    const { media } = await getJSON();
     const medias = media.filter(el => {
         return el['photographerId'] == id;
     });
     
-    displayData(photographerResult[0], medias);
+    displayData(photographer, medias);
 }
 
 init();
