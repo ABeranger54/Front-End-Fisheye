@@ -1,41 +1,29 @@
-async function displayData(photographer, medias) {
+async function displayData(photographer) {
     const userCardDOM = photographer.getDescriptionDOM();
-    var header = document.querySelector(".photograph-header");
-    header.insertBefore(userCardDOM, header.firstChild);
     const picture = photographer.getPictureDOM();
+    const header = document.querySelector(".photograph-header");
+    header.insertBefore(userCardDOM, header.firstChild);
     header.appendChild(picture);
 
-    var totalLikes = 0;
     const mediaSection = document.getElementById("media_section");
+    const medias = photographer.getMedias();
     medias.forEach((media) => {
-        const mediaModel = mediaFactory(media);
-        const mediaCardDOM = mediaModel.getMediaCardDOM();
-        mediaSection.appendChild(mediaCardDOM);
-        totalLikes += mediaModel._likes;
+        mediaSection.appendChild(media.getMediaCardDOM());
     });
 
-    const aside = document.querySelector("aside");
-    const asideLikes = document.createElement("p");
-    asideLikes.textContent = totalLikes;
-    aside.appendChild(asideLikes);
-
-    const asidePrice = document.createElement("p");
-    asidePrice.textContent = photographer._price + "€ / jour";
-    aside.appendChild(asidePrice);
+    const body = document.querySelector("body");
+    const aside = photographer.getAsideDOM();
+    body.appendChild(aside);
 }
 
 async function init() {
-    var params = (new URL(document.location)).searchParams;
-    var id = params.get('id');
+    const params = (new URL(document.location)).searchParams;
+    const id = params.get('id');
 
-    const photographer = await Photographer.getPhotographerById(id);
-
-    const { media } = await getJSON();
-    const medias = media.filter(el => {
-        return el['photographerId'] == id;
-    });
+    await Photographer.load();
+    await Media.load();
     
-    displayData(photographer, medias);
+    displayData(Photographer.getById(id));
 }
 
 init();

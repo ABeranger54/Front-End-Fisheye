@@ -11,9 +11,9 @@ function closeModal() {
 function validateForm(){
     closeModal();
 
-    var fields = ["firstName", "lastName", "mail", "message"];
+    const fields = ["firstName", "lastName", "mail", "message"];
     fields.forEach(field => {
-        var fieldDOM = document.getElementById(field);
+        const fieldDOM = document.getElementById(field);
         console.log(field + ": " + fieldDOM.value);
         fieldDOM.value = "";
     });

@@ -1,27 +1,42 @@
-function mediaFactory(data) {
-    return new Media(data);
-}
-
-const MediaType = {
-    IMAGE : "image",
-    VIDEO: "video"
-}
-
 class Media{
+
+    static MediaType = {
+        IMAGE : "image",
+        VIDEO: "video"
+    }
+
+    static MEDIAS = null;
+
     constructor(data){
         this._id = data.id;
-        this._photographerId = data.PhotographerId;
+        this._photographerId = data.photographerId;
         this._title = data.title;
         if(data.hasOwnProperty('image')){
-            this._type = MediaType.IMAGE;
+            this._type = Media.MediaType.IMAGE;
             this._link = data.image;
         }else{
-            this._type = MediaType.VIDEO;
+            this._type = Media.MediaType.VIDEO;
             this._link = data.video;
         }
         this._likes = data.likes;
         this._date = data.date;
         this._price = data.price;
+    }
+
+    static async load(){
+        const { media } = await getJSON();
+        this.MEDIAS = media;
+    }
+
+    static getByPhotographerId(id){
+        var result = [];
+        const arr = this.MEDIAS.filter(el => {
+            return el['photographerId'] == id;
+        });
+        arr.forEach(media => {
+            result.push(new Media(media));
+        });
+        return result;
     }
 
     getMediaCardDOM(){

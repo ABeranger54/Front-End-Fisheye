@@ -1,7 +1,4 @@
-function photographerFactory(data) {
-    return new Photographer(data);
-}
-
+//TODO: remove function ?
 async function getJSON() {
     return (await fetch('data/photographers.json')).json();
 }
@@ -17,28 +14,45 @@ class Photographer{
         this._city = data.city;
         this._tagline = data.tagline;
         this._price = data.price;
+        //TODO: always set Medias on construct
+        this._medias = null;
     }
 
-    static async loadPhotographers(){
+    static async load(){
         const { photographers } = await getJSON();
         this.PHOTOGRAPHERS = photographers;
     }
 
-    //TODO: return objects
-    static async getPhotographers(){
-        if(!this.PHOTOGRAPHERS){
-            await Photographer.loadPhotographers();
-        }
-        return this.PHOTOGRAPHERS;
+    static getAll(){
+        var result = [];
+        this.PHOTOGRAPHERS.forEach((photographer) => {
+            result.push(new Photographer(photographer));
+        });
+        return result;
     }
 
-    static async getPhotographerById(id){
-        await Photographer.getPhotographers();
+    static getById(id){
         const result = this.PHOTOGRAPHERS.filter(el => {
             return el['id'] == id;
         });
 
-        return photographerFactory(result[0]);
+        return new Photographer(result[0]);
+    }
+
+    getMedias(){
+        if(!this._medias){
+            this._medias = Media.getByPhotographerId(this._id);
+        }
+        return this._medias;
+    }
+
+    getTotalLikes(){
+        var likes = 0;
+        var medias = this.getMedias();
+        medias.forEach(media => {
+            likes += media._likes;
+        });
+        return likes;
     }
 
     getUserCardDOM(){
@@ -103,5 +117,17 @@ class Photographer{
         img.setAttribute("src", this._picture);
         img.setAttribute("alt", "");
         return img;
+    }
+
+    getAsideDOM(){
+        const aside = document.createElement("aside");
+        const asideLikes = document.createElement("p");
+        asideLikes.textContent = this.getTotalLikes();
+        aside.appendChild(asideLikes);
+
+        const asidePrice = document.createElement("p");
+        asidePrice.textContent = this._price + "€ / jour";
+        aside.appendChild(asidePrice);
+        return aside;
     }
 }
