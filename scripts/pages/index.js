@@ -7,8 +7,8 @@
     }
 
     async function init() {
-        await Photographer.load();
-        displayData(Photographer.getAll());
+        await PhotographerFactory.load();
+        displayData(PhotographerFactory.getAll());
     }
     
     init();

@@ -155,7 +155,7 @@ aside p{
     width: 300px;
 }
 
-#media_section article img{
+#media_section .media_thumbnail{
     width: 300px;
     height: 250px;
     object-fit: cover;
@@ -163,7 +163,7 @@ aside p{
     border-radius: 5px;
 }
 
-.media_description{
+.media_description, .heart_container{
     display: flex;
     justify-content: space-between;
 }
@@ -177,4 +177,15 @@ aside p{
     line-height: 35px;
     color: #901C1C;
     font-weight: bold;
+}
+
+.heart{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 6px;
+}
+
+aside .heart{
+    margin-top: 3px;
 }

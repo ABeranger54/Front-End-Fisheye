@@ -14,16 +14,18 @@ async function displayData(photographer) {
     const body = document.querySelector("body");
     const aside = photographer.getAsideDOM();
     body.appendChild(aside);
+
+    document.querySelector(".modal h2").textContent += " : " + photographer._name;
 }
 
 async function init() {
     const params = (new URL(document.location)).searchParams;
     const id = params.get('id');
 
-    await Photographer.load();
-    await Media.load();
+    await PhotographerFactory.load();
+    await MediaFactory.load();
     
-    displayData(Photographer.getById(id));
+    displayData(PhotographerFactory.getById(id));
 }
 
 init();
