@@ -2,7 +2,7 @@ h2, p{
     margin: 0;
 }
 
-#contact_modal {
+#contact_modal, #lightBox {
     display: none;
     position: fixed;
     left: 0;
@@ -20,6 +20,7 @@ h2, p{
     background-color: #FAFAFA;
     height: 200px;
     margin: 0 100px;
+    margin-bottom: 30px;
 }
 
 .photograph-header img{
@@ -147,7 +148,7 @@ aside p{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 80px;
+    margin: 0 90px;
 }
 
 #media_section article{
@@ -186,6 +187,77 @@ aside p{
     margin-top: 6px;
 }
 
+.media_description .heart:hover{
+    cursor: pointer;
+}
+
 aside .heart{
     margin-top: 3px;
+}
+
+main label{
+    margin-left: 100px;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+select{
+    background-color: #901C1C;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+}
+
+#lightBox{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#lightBox>div{
+    border-radius: 5px;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin:  50px auto;
+}
+
+#lightBox_media img{
+    width: auto;
+    height: 500px;
+}
+
+#lightBox_media video{
+    width: 800px;
+}
+
+#lightBox_media h2{
+    font-size: 25px;
+    color: #901C1C;
+    font-weight: bold;
+}
+
+#lightBox_left, #lightBox_right{
+    width: 70px;
+    height: 525px;
+    display: flex;
+    align-items: center;
+}
+
+#lightBox_left img, #lightBox_right img{
+    width: 70px;
+    height: 70px;
+}
+
+#lightBox_left, #lightBox_right{
+    background-color: red;
+}
+
+#lightBox_right{
+    background-color: blue;
 }

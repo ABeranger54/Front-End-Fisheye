@@ -17,8 +17,25 @@
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <label for="filter">Trier par</label>
+      <select name="filter" id="filter">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+      </select>
       <div id="media_section"></div>
     </main>
+    <div id="lightBox">
+        <div>
+            <div id="lightBox_left">
+              <img src="assets/icons/left-arrow.png" />
+            </div>
+            <div id="lightBox_media"></div>
+            <div id="lightBox_right">
+              <img src="assets/icons/right-arrow.png" />
+            </div>
+        </div>
+    </div>
     <div id="contact_modal">
 			<div class="modal">
 				<header>

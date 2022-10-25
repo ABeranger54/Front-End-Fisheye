@@ -112,4 +112,16 @@ class Photographer{
         aside.appendChild(asidePrice);
         return aside;
     }
+
+    sortByPopularity(){
+        this._medias.sort((a, b) => b._likes - a._likes);
+    }
+
+    sortByTitle(){
+        this._medias.sort((a, b) => a._title.localeCompare(b._title));
+    }
+
+    sortByDate(){
+        this._medias.sort((a, b) => Number(b._date) - Number(a._date));
+    }
 }

@@ -17,11 +17,12 @@ class Media{
             this._link = data.video;
         }
         this._likes = data.likes;
-        this._date = data.date;
+        this._date = new Date(data.date);
         this._price = data.price;
     }
 
-    getMediaCardDOM(){
+    //TODO: replace photographer by PhotographerFactory instances managing
+    getMediaCardDOM(photographer){
         const article = document.createElement('article');
 
         var thumbnail;
@@ -37,6 +38,9 @@ class Media{
             thumbnail.appendChild(videoSource);
         }
         thumbnail.setAttribute("class", "media_thumbnail");
+        thumbnail.addEventListener("click", showLightbox)
+        thumbnail.media = this;
+        thumbnail.photographer = photographer;
         
         const description = document.createElement("div");
         description.setAttribute("class", "media_description");
@@ -52,6 +56,8 @@ class Media{
         const heart = document.createElement("img");
         heart.setAttribute("src", "assets/icons/heart.svg");
         heart.setAttribute("class", "heart");
+        heart.addEventListener("click", incrementLikes);
+        heart.mediaCounter = likes;
 
         likesContainer.appendChild(likes);
         likesContainer.appendChild(heart);
