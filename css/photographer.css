@@ -162,6 +162,7 @@ aside p{
     object-fit: cover;
     margin-bottom: 5px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .media_description, .heart_container{
@@ -228,7 +229,7 @@ select{
 }
 
 #lightBox_media img{
-    width: auto;
+    max-width: 800px;
     height: 500px;
 }
 
@@ -246,18 +247,18 @@ select{
     width: 70px;
     height: 525px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-#lightBox_left img, #lightBox_right img{
-    width: 70px;
-    height: 70px;
+.arrow, #closeButton{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
-#lightBox_left, #lightBox_right{
-    background-color: red;
-}
-
-#lightBox_right{
-    background-color: blue;
+#closeButton{
+    position: absolute;
+    top: 80px;
 }

@@ -95,19 +95,28 @@ function showLightbox(evt){
     title.textContent = media._title;
     lbMedia.appendChild(title);
 
-    const imgLeft = document.querySelector("#lightBox_left img");
+    const close = document.getElementById("closeButton");
+    close.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", closeLightbox);
+
+    const imgLeft = document.querySelector("#lightBox_left .arrow");
     imgLeft.addEventListener("click", lightBoxBack);
     imgLeft.photographer = evt.currentTarget.photographer;
     imgLeft.media = media;
 
-    const imgRight = document.querySelector("#lightBox_right img");
+    const imgRight = document.querySelector("#lightBox_right .arrow");
     imgRight.addEventListener("click", lightBoxNext);
     imgRight.photographer = evt.currentTarget.photographer;
     imgRight.media = media;
 
+    document.addEventListener("keydown", lightBoxBack);
+    document.addEventListener("keydown", lightBoxNext);
+    document.photographer = evt.currentTarget.photographer;
+    document.media = media;
 }
 
 function lightBoxNext(evt){
+    if(evt.code && evt.code != "ArrowRight") return;
     const photographer = evt.currentTarget.photographer;
     const currentMedia = evt.currentTarget.media;
     const mediaIndex = photographer._medias.indexOf(currentMedia);
@@ -119,6 +128,7 @@ function lightBoxNext(evt){
 }
 
 function lightBoxBack(evt){
+    if(evt.code && evt.code != "ArrowLeft") return;
     const photographer = evt.currentTarget.photographer;
     const currentMedia = evt.currentTarget.media;
     const mediaIndex = photographer._medias.indexOf(currentMedia);
@@ -127,6 +137,11 @@ function lightBoxBack(evt){
         evt.currentTarget.removeEventListener("click", lightBoxBack);
         showLightbox(evt);
     }
+}
+
+function closeLightbox(evt){
+    if(evt.code && evt.code != "Escape") return;
+    document.getElementById("lightBox").style.display = "none";
 }
 
 init();
