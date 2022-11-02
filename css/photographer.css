@@ -62,10 +62,11 @@ h2, p{
 
 .modal header img {
     cursor: pointer;
+    width: 30px;
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 40px;
     font-weight: normal;
     text-align: center;
 }
@@ -79,7 +80,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 25px;
 }
 
 form div {
@@ -94,8 +95,8 @@ form input, form textarea{
     width: 100%;
     border: none;
     border-radius: 5px;
-    font-size: 25px;
-    padding: 10px;
+    font-size: 20px;
+    padding: 0 10px;
 }
 
 form input {
@@ -104,7 +105,7 @@ form input {
 
 form textarea{
     resize: none;
-    height: 200px;
+    height: 150px;
 }
 
 #photographer_page_description h2{
@@ -186,6 +187,7 @@ aside p{
     height: 20px;
     margin-left: 5px;
     margin-top: 6px;
+    fill: #901C1C;
 }
 
 .media_description .heart:hover{
@@ -213,6 +215,17 @@ select{
     border-radius: 5px;
 }
 
+option{
+    background-color: #901C1C;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+option:checked{
+    display: none;
+}
+
 #lightBox{
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -220,12 +233,12 @@ select{
 #lightBox>div{
     border-radius: 5px;
     background-color: white;
-    width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin:  50px auto;
+    height: 550px;
 }
 
 #lightBox_media img{
@@ -244,12 +257,8 @@ select{
 }
 
 #lightBox_left, #lightBox_right{
-    width: 70px;
-    height: 525px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 30px;
+    width: 50px;
 }
 
 .arrow, #closeButton{

@@ -38,6 +38,7 @@ class Media{
             thumbnail.appendChild(videoSource);
         }
         thumbnail.setAttribute("class", "media_thumbnail");
+        thumbnail.setAttribute("aria-label", this._title + ", closeup view");
         thumbnail.addEventListener("click", showLightbox)
         thumbnail.media = this;
         thumbnail.photographer = photographer;
@@ -53,14 +54,11 @@ class Media{
         const likes = document.createElement("p");
         likes.textContent = this._likes;
 
-        const heart = document.createElement("img");
-        heart.setAttribute("src", "assets/icons/heart.svg");
-        heart.setAttribute("class", "heart");
-        heart.addEventListener("click", incrementLikes);
-        heart.mediaCounter = likes;
-
         likesContainer.appendChild(likes);
-        likesContainer.appendChild(heart);
+        likesContainer.innerHTML += '<svg class="heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"/></svg>';
+        var svg = likesContainer.querySelector("svg");
+        svg.setAttribute("aria-label", "likes");
+        svg.addEventListener("click", incrementLikes);
 
         description.appendChild(title);
         description.appendChild(likesContainer);

@@ -86,7 +86,7 @@ class Photographer{
     getPictureDOM(){
         const img = document.createElement( 'img' );
         img.setAttribute("src", this._picture);
-        img.setAttribute("alt", "");
+        img.setAttribute("alt", this._name);
         return img;
     }
 
@@ -101,6 +101,7 @@ class Photographer{
         const heart = document.createElement("img");
         heart.setAttribute("src", "assets/icons/heart.svg");
         heart.setAttribute("class", "heart");
+        heart.setAttribute("alt", "like button");
 
         likesContainer.appendChild(asideLikes);
         likesContainer.appendChild(heart);

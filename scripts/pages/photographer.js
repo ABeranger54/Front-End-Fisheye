@@ -58,7 +58,8 @@ function sortMedias(evt){
 
 function incrementLikes(evt){
     const heart = evt.currentTarget
-    const counter = heart.mediaCounter;
+    heart.style.fill = "red";
+    var counter = evt.currentTarget.parentNode.querySelector("p");
     counter.textContent = parseInt(counter.textContent) + 1;
 
     const asideLikes = document.querySelector("aside .heart_container p");
@@ -70,7 +71,7 @@ function incrementLikes(evt){
 
 function showLightbox(evt){
     const media = evt.currentTarget.media;
-    document.getElementById("lightBox").style.display = "block";
+    document.getElementById("lightBox").style.display = "flex";
 
     const lbMedia = document.getElementById("lightBox_media");
     lbMedia.innerHTML = "";
