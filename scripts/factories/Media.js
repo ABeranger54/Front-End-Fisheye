@@ -39,7 +39,8 @@ class Media{
         }
         thumbnail.setAttribute("class", "media_thumbnail");
         thumbnail.setAttribute("aria-label", this._title + ", closeup view");
-        thumbnail.addEventListener("click", showLightbox)
+        thumbnail.addEventListener("click", showLightbox);
+        document.addEventListener("keydown", showLightbox);
         thumbnail.media = this;
         thumbnail.photographer = photographer;
         
@@ -60,8 +61,13 @@ class Media{
         svg.setAttribute("aria-label", "likes");
         svg.addEventListener("click", incrementLikes);
 
+        document.addEventListener("keydown", incrementLikes);
+
         description.appendChild(title);
         description.appendChild(likesContainer);
+
+        thumbnail.setAttribute("tabIndex", "0");
+        description.setAttribute("tabIndex", "0");
 
         article.appendChild(thumbnail);
         article.appendChild(description);

@@ -1,9 +1,17 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    modal.addEventListener("keydown", closeModalEvent);
+    document.getElementById("firstName").focus();
 }
 
-function closeModal() {
+function closeModalEvent(evt) {
+    if(evt.code && evt.code == "Escape"){
+        closeModal();
+    }
+}
+
+function closeModal(){
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }

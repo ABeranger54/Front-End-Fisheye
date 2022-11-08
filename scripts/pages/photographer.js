@@ -57,9 +57,22 @@ function sortMedias(evt){
 }
 
 function incrementLikes(evt){
-    const heart = evt.currentTarget
+
+    var heart;
+
+    if(evt.code && evt.code != "Enter"){
+        return;
+    }
+    if(evt.code == "Enter"){
+        if(document.activeElement.className != "media_description") return;
+        heart = document.activeElement.querySelector("div svg");
+        if(heart.style.fill == "red") return;
+    }else{
+        heart = evt.currentTarget;
+    }
+    
     heart.style.fill = "red";
-    var counter = evt.currentTarget.parentNode.querySelector("p");
+    var counter = heart.parentNode.querySelector("p");
     counter.textContent = parseInt(counter.textContent) + 1;
 
     const asideLikes = document.querySelector("aside .heart_container p");
@@ -70,7 +83,19 @@ function incrementLikes(evt){
 }
 
 function showLightbox(evt){
-    const media = evt.currentTarget.media;
+    if(evt.code && evt.code != "Enter" && evt.code != "ArrowLeft" && evt.code != "ArrowRight") return;
+    var media;
+    var photographer;
+    if(evt.code == "Enter"){
+        if(document.activeElement.tagName != "IMG" && document.activeElement.tagName != "VIDEO"){
+            return;
+        }
+        media = document.activeElement.media;
+        photographer = document.activeElement.photographer;
+    }else{
+        media = evt.currentTarget.media;
+        photographer = evt.currentTarget.photographer;
+    }
     document.getElementById("lightBox").style.display = "flex";
 
     const lbMedia = document.getElementById("lightBox_media");
@@ -102,17 +127,17 @@ function showLightbox(evt){
 
     const imgLeft = document.querySelector("#lightBox_left .arrow");
     imgLeft.addEventListener("click", lightBoxBack);
-    imgLeft.photographer = evt.currentTarget.photographer;
+    imgLeft.photographer = photographer;
     imgLeft.media = media;
 
     const imgRight = document.querySelector("#lightBox_right .arrow");
     imgRight.addEventListener("click", lightBoxNext);
-    imgRight.photographer = evt.currentTarget.photographer;
+    imgRight.photographer = photographer;
     imgRight.media = media;
 
     document.addEventListener("keydown", lightBoxBack);
     document.addEventListener("keydown", lightBoxNext);
-    document.photographer = evt.currentTarget.photographer;
+    document.photographer = photographer;
     document.media = media;
 }
 
