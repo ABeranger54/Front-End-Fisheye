@@ -45,7 +45,6 @@ function sortMedias(evt){
     const select = evt.currentTarget;
     const photographer = select.photographer;
 
-    //TODO: switch statement
     if(select.value == "popularity"){
         photographer.sortByPopularity();
     }else if(select.value == "date"){
@@ -57,7 +56,6 @@ function sortMedias(evt){
 }
 
 function incrementLikes(evt){
-
     var heart;
 
     if(evt.code && evt.code != "Enter"){
@@ -84,6 +82,12 @@ function incrementLikes(evt){
 
 function showLightbox(evt){
     if(evt.code && evt.code != "Enter" && evt.code != "ArrowLeft" && evt.code != "ArrowRight") return;
+    if(evt.code == "ArrowLeft" || evt.code == "ArrowRight"){
+        if(document.getElementById("lightBox").style.display == "none" || document.getElementById("lightBox").style.display == ""){
+            return;
+        }
+    }
+    
     var media;
     var photographer;
     if(evt.code == "Enter"){
