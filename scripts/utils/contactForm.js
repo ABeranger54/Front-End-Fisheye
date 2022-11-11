@@ -16,6 +16,7 @@ function closeModal(){
     modal.style.display = "none";
 }
 
+//Affiche les valeurs envoyées par le formulaire et vide les champs
 function validateForm(){
     closeModal();
 

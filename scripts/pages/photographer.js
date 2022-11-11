@@ -1,6 +1,8 @@
+//Récuperation de l'id du photographe par les paramètres URL
 const params = (new URL(document.location)).searchParams;
 const id = params.get('id');
 
+//Affichage des informations du photographe
 function displayInformations(photographer){
     const userCardDOM = photographer.getDescriptionDOM();
     const picture = photographer.getPictureDOM();
@@ -15,6 +17,7 @@ function displayInformations(photographer){
     document.querySelector(".modal h2").textContent += " : " + photographer._name;
 }
 
+//Affichage des médias
 function displayMedias(photographer){
     const mediaSection = document.getElementById("media_section");
     mediaSection.innerHTML = "";
@@ -24,19 +27,24 @@ function displayMedias(photographer){
     });
 }
 
+//Fonction appelée au chargement de page
 async function init() {
+    //Chargement des Photographes/Médias, contenus de façon statique dans les factories
     await PhotographerFactory.load();
     await MediaFactory.load();
 
     var photographerObject = PhotographerFactory.getById(id);
 
+    //Ajout d'un EventListener sur le filtre <select>
     var filter = document.getElementById("filter")
     filter.addEventListener("change", sortMedias);
     filter.photographer = photographerObject;
 
+    //Tri des médias par popularité (première option du filtre select)
     photographerObject.getMedias();
     photographerObject.sortByPopularity();
 
+    //Affichage des informations dynamiques
     displayInformations(photographerObject);
     displayMedias(photographerObject);
 }
@@ -45,6 +53,7 @@ function sortMedias(evt){
     const select = evt.currentTarget;
     const photographer = select.photographer;
 
+    //Tri du tableau de médias (membre de photographe)
     if(select.value == "popularity"){
         photographer.sortByPopularity();
     }else if(select.value == "date"){
@@ -55,9 +64,11 @@ function sortMedias(evt){
     displayMedias(photographer);
 }
 
+//Incrémentation des likes (pour le média et au total)
 function incrementLikes(evt){
     var heart;
 
+    //Vérification des entrées clavier
     if(evt.code && evt.code != "Enter"){
         return;
     }
@@ -69,18 +80,22 @@ function incrementLikes(evt){
         heart = evt.currentTarget;
     }
     
+    //Mise à jour du média
     heart.style.fill = "red";
     var counter = heart.parentNode.querySelector("p");
     counter.textContent = parseInt(counter.textContent) + 1;
 
+    //Mise à jour du total de likes dans <aside>
     const asideLikes = document.querySelector("aside .heart_container p");
     asideLikes.textContent = parseInt(asideLikes.textContent) + 1;
 
+    //Suppression de l'EventListener (ce qui évite de cliquer / aimer plusieurs fois un média)
     heart.style.cursor = "default";
     heart.removeEventListener("click", incrementLikes);
 }
 
 function showLightbox(evt){
+    //Vérification des entrées clavier
     if(evt.code && evt.code != "Enter" && evt.code != "ArrowLeft" && evt.code != "ArrowRight") return;
     if(evt.code == "ArrowLeft" || evt.code == "ArrowRight"){
         if(document.getElementById("lightBox").style.display == "none" || document.getElementById("lightBox").style.display == ""){
@@ -88,6 +103,7 @@ function showLightbox(evt){
         }
     }
     
+    //Affectation du média et photographe en fonction de l'entrée clavier
     var media;
     var photographer;
     if(evt.code == "Enter"){
@@ -125,6 +141,7 @@ function showLightbox(evt){
     title.textContent = media._title;
     lbMedia.appendChild(title);
 
+    //Ajout d'EventListener pour le bouton de fermeture et les flèches
     const close = document.getElementById("closeButton");
     close.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", closeLightbox);
@@ -145,6 +162,7 @@ function showLightbox(evt){
     document.media = media;
 }
 
+//Passage au média suivant dans la lightbox
 function lightBoxNext(evt){
     if(evt.code && evt.code != "ArrowRight") return;
     const photographer = evt.currentTarget.photographer;
@@ -157,6 +175,7 @@ function lightBoxNext(evt){
     }
 }
 
+//Passage au média précédent dans la lightbox
 function lightBoxBack(evt){
     if(evt.code && evt.code != "ArrowLeft") return;
     const photographer = evt.currentTarget.photographer;

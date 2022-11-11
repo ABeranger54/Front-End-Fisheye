@@ -6,7 +6,6 @@ class Photographer{
         this._city = data.city;
         this._tagline = data.tagline;
         this._price = data.price;
-        //TODO: always set Medias on construct
         this._medias = null;
     }
 

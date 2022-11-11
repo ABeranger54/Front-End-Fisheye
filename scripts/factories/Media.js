@@ -21,7 +21,7 @@ class Media{
         this._price = data.price;
     }
 
-    //TODO: replace photographer by PhotographerFactory instances managing
+    //Retourne un élément article contenant les informations de ce média
     getMediaCardDOM(photographer){
         const article = document.createElement('article');
 
