@@ -46,11 +46,13 @@ class Media{
         
         const description = document.createElement("div");
         description.setAttribute("class", "media_description");
+        description.setAttribute("aria-label", "Description");
         const title = document.createElement("h2");
         title.textContent = this._title;
 
         const likesContainer = document.createElement("div");
         likesContainer.setAttribute("class", "heart_container");
+        likesContainer.setAttribute("aria-label", "Likes");
 
         const likes = document.createElement("p");
         likes.textContent = this._likes;

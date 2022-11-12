@@ -62,6 +62,7 @@ class Photographer{
 
     getDescriptionDOM(){
         const container = document.createElement("div");
+        container.setAttribute("aria-label", "Photographer description");
         container.setAttribute("id", "photographer_page_description");
 
         const h2 = document.createElement( 'h2' );
@@ -96,6 +97,7 @@ class Photographer{
 
         const likesContainer = document.createElement("div");
         likesContainer.setAttribute("class", "heart_container");
+        likesContainer.setAttribute("aria-label", "Likes");
 
         const heart = document.createElement("img");
         heart.setAttribute("src", "assets/icons/heart.svg");

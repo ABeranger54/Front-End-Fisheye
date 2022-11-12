@@ -1,4 +1,3 @@
-//TODO: remove function ?
 async function getJSON() {
     return (await fetch('data/photographers.json')).json();
 }
