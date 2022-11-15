@@ -1,3 +1,4 @@
+//Affiche la modale de contact et met le focus sur le premier champ
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
@@ -5,12 +6,14 @@ function displayModal() {
     document.getElementById("firstName").focus();
 }
 
+//Ferme la modale via une entrée clavier
 function closeModalEvent(evt) {
     if(evt.code && evt.code == "Escape"){
         closeModal();
     }
 }
 
+//Ferme la modale
 function closeModal(){
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";

@@ -9,6 +9,7 @@ class Photographer{
         this._medias = null;
     }
 
+    //Retourne la liste de médias et la crée si nécessaire
     getMedias(){
         if(!this._medias){
             this._medias = MediaFactory.getByPhotographerId(this._id);
@@ -16,6 +17,7 @@ class Photographer{
         return this._medias;
     }
 
+    //Retourne le nombre total de likes du photographe
     getTotalLikes(){
         var likes = 0;
         var medias = this.getMedias();
@@ -25,6 +27,7 @@ class Photographer{
         return likes;
     }
 
+    //Retourne l'élément DOM correspondant au photographe sur la page d'accueil
     getUserCardDOM(){
         const article = document.createElement( 'article' );
 
@@ -60,6 +63,7 @@ class Photographer{
         return (article);
     }
 
+    //Retourne l'élément DOM correspondant à la description du photographe sur la page photographe
     getDescriptionDOM(){
         const container = document.createElement("div");
         container.setAttribute("aria-label", "Photographer description");
@@ -83,6 +87,7 @@ class Photographer{
         return container;
     }
 
+    //Retourne l'élément DOM img associé à un photographe
     getPictureDOM(){
         const img = document.createElement( 'img' );
         img.setAttribute("src", this._picture);
@@ -90,6 +95,7 @@ class Photographer{
         return img;
     }
 
+    //Retourne l'élément DOM correspondant au résumé du photographe (aside, en bas à droite sur la page photographe)
     getAsideDOM(){
         const aside = document.createElement("aside");
         const asideLikes = document.createElement("p");
@@ -115,14 +121,17 @@ class Photographer{
         return aside;
     }
 
+    //Tri de la liste _medias par popularité
     sortByPopularity(){
         this._medias.sort((a, b) => b._likes - a._likes);
     }
 
+    //Tri de la liste _medias par titre
     sortByTitle(){
         this._medias.sort((a, b) => a._title.localeCompare(b._title));
     }
 
+    //Tri de la liste _medias par date
     sortByDate(){
         this._medias.sort((a, b) => Number(b._date) - Number(a._date));
     }

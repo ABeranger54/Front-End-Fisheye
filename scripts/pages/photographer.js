@@ -121,8 +121,9 @@ function showLightbox(evt){
     const lbMedia = document.getElementById("lightBox_media");
     lbMedia.innerHTML = "";
 
+    //Définition de l'élément DOM en fonction du type de média (image/vidéo)
     var thumbnail;
-    if(media._type == Media.MediaType.IMAGE){
+    if(media._type == MediaType.IMAGE){
         thumbnail = document.createElement("img");
         thumbnail.setAttribute("src", "assets/medias/" + media._link);
         thumbnail.setAttribute("alt", media._title);
@@ -188,6 +189,7 @@ function lightBoxBack(evt){
     }
 }
 
+//Permet de fermer la lightbox
 function closeLightbox(evt){
     if(evt.code && evt.code != "Escape") return;
     document.getElementById("lightBox").style.display = "none";

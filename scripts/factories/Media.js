@@ -1,19 +1,20 @@
-class Media{
+//Représentation du type de média par une énumeration
+MediaType = {
+    IMAGE : "image",
+    VIDEO: "video"
+}
 
-    static MediaType = {
-        IMAGE : "image",
-        VIDEO: "video"
-    }
+class Media{
 
     constructor(data){
         this._id = data.id;
         this._photographerId = data.photographerId;
         this._title = data.title;
         if(data.hasOwnProperty('image')){
-            this._type = Media.MediaType.IMAGE;
+            this._type = MediaType.IMAGE;
             this._link = data.image;
         }else{
-            this._type = Media.MediaType.VIDEO;
+            this._type = MediaType.VIDEO;
             this._link = data.video;
         }
         this._likes = data.likes;
@@ -27,7 +28,7 @@ class Media{
 
         var thumbnail;
 
-        if(this._type == Media.MediaType.IMAGE){
+        if(this._type == MediaType.IMAGE){
             thumbnail = document.createElement('img');
             thumbnail.setAttribute("src", "assets/medias/" + this._link);
         }else{
